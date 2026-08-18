@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>invoice_003</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 40px; color: #222; }
+    h1 { color: #B85C00; margin-bottom: 8px; }
+    .meta { display: flex; justify-content: space-between; margin-bottom: 24px; }
+    .block { width: 48%; }
+    table { width: 100%; border-collapse: collapse; margin-top: 24px; }
+    th { background: #FFF1E5; text-align: left; padding: 10px; }
+    td { border-bottom: 1px solid #ddd; padding: 10px; }
+    .totals { margin-top: 20px; width: 320px; margin-left: auto; }
+    .totals td { border: none; padding: 6px 0; }
+  </style>
+</head>
+<body>
+  <h1>INVOICE</h1>
+  <p>Template: bold_orange | Pages: 1</p>
+  <div class="meta">
+    <div class="block">
+      <strong>Vendor</strong><br />
+      Luna Creative Studio<br />
+      17 King Street West, Toronto, ON M5H 1A1, Canada<br />
+      +1-416-555-0114<br />
+      finance@luna-creative.test
+    </div>
+    <div class="block">
+      <strong>Bill To</strong><br />
+      Harbor Retail Group<br />
+      250 Granville Street, Vancouver, BC V6C 1S4, Canada<br /><br />
+      <strong>Invoice No:</strong> LCS-2026-087<br />
+      <strong>Invoice Date:</strong> 2026-08-02<br />
+      <strong>Due Date:</strong> 2026-08-16<br />
+      <strong>Currency:</strong> CAD
+    </div>
+  </div>
+  <table>
+    <thead>
+      <tr><th>Description</th><th>Qty</th><th>Unit Price</th><th>Line Total</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Brand Identity Refresh</td><td>1</td><td>CAD 2,200.00</td><td>CAD 2,200.00</td></tr>
+<tr><td>Social Media Asset Pack</td><td>2</td><td>CAD 480.00</td><td>CAD 960.00</td></tr>
+<tr><td>Print Flyer Design</td><td>3</td><td>CAD 150.00</td><td>CAD 450.00</td></tr>
+    </tbody>
+  </table>
+  <table class="totals">
+    <tr><td>Subtotal</td><td>CAD 3,610.00</td></tr>
+    <tr><td>Tax</td><td>CAD 469.30</td></tr>
+    <tr><td>Shipping</td><td>CAD 0.00</td></tr>
+    <tr><td><strong>Grand Total</strong></td><td><strong>CAD 4,079.30</strong></td></tr>
+  </table>
+  <p><strong>Notes:</strong> Please include invoice number in the transfer reference.</p>
+</body>
+</html>

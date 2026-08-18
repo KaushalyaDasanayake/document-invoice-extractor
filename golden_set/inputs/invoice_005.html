@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>invoice_005</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 40px; color: #222; }
+    h1 { color: #2E6F40; margin-bottom: 8px; }
+    .meta { display: flex; justify-content: space-between; margin-bottom: 24px; }
+    .block { width: 48%; }
+    table { width: 100%; border-collapse: collapse; margin-top: 24px; }
+    th { background: #EEF7F0; text-align: left; padding: 10px; }
+    td { border-bottom: 1px solid #ddd; padding: 10px; }
+    .totals { margin-top: 20px; width: 320px; margin-left: auto; }
+    .totals td { border: none; padding: 6px 0; }
+  </style>
+</head>
+<body>
+  <h1>INVOICE</h1>
+  <p>Template: minimal_green | Pages: 1</p>
+  <div class="meta">
+    <div class="block">
+      <strong>Vendor</strong><br />
+      Sakura Medical Consumables KK<br />
+      2-14-7 Nihonbashi, Chuo-ku, Tokyo 103-0027, Japan<br />
+      +81-3-5550-1821<br />
+      billing@sakura-medical.test
+    </div>
+    <div class="block">
+      <strong>Bill To</strong><br />
+      Pacific Care Hospital<br />
+      85 Orchard Boulevard, Singapore 238880, Singapore<br /><br />
+      <strong>Invoice No:</strong> SMC-2026-2304<br />
+      <strong>Invoice Date:</strong> 2026-08-05<br />
+      <strong>Due Date:</strong> 2026-09-04<br />
+      <strong>Currency:</strong> JPY
+    </div>
+  </div>
+  <table>
+    <thead>
+      <tr><th>Description</th><th>Qty</th><th>Unit Price</th><th>Line Total</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Disposable Examination Gloves</td><td>50</td><td>JPY 1,200</td><td>JPY 60,000</td></tr>
+<tr><td>Sterile Syringe Pack</td><td>30</td><td>JPY 1,850</td><td>JPY 55,500</td></tr>
+<tr><td>Surgical Mask Carton</td><td>40</td><td>JPY 980</td><td>JPY 39,200</td></tr>
+    </tbody>
+  </table>
+  <table class="totals">
+    <tr><td>Subtotal</td><td>JPY 154,700</td></tr>
+    <tr><td>Tax</td><td>JPY 15,470</td></tr>
+    <tr><td>Shipping</td><td>JPY 3,200</td></tr>
+    <tr><td><strong>Grand Total</strong></td><td><strong>JPY 173,370</strong></td></tr>
+  </table>
+  <p><strong>Notes:</strong> Hospital procurement order PO-88421 referenced.</p>
+</body>
+</html>

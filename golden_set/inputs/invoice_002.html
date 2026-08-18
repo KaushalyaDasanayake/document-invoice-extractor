@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>invoice_002</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 40px; color: #222; }
+    h1 { color: #2E6F40; margin-bottom: 8px; }
+    .meta { display: flex; justify-content: space-between; margin-bottom: 24px; }
+    .block { width: 48%; }
+    table { width: 100%; border-collapse: collapse; margin-top: 24px; }
+    th { background: #EEF7F0; text-align: left; padding: 10px; }
+    td { border-bottom: 1px solid #ddd; padding: 10px; }
+    .totals { margin-top: 20px; width: 320px; margin-left: auto; }
+    .totals td { border: none; padding: 6px 0; }
+  </style>
+</head>
+<body>
+  <h1>INVOICE</h1>
+  <p>Template: minimal_green | Pages: 1</p>
+  <div class="meta">
+    <div class="block">
+      <strong>Vendor</strong><br />
+      GreenField Industrial Parts Co<br />
+      88 Foundry Road, Columbus, OH 43215, USA<br />
+      +1-614-555-0182<br />
+      accounts@greenfield-parts.test
+    </div>
+    <div class="block">
+      <strong>Bill To</strong><br />
+      Vertex Mechanical Services<br />
+      410 River Park Drive, Pittsburgh, PA 15222, USA<br /><br />
+      <strong>Invoice No:</strong> GFI-2026-1042<br />
+      <strong>Invoice Date:</strong> 2026-07-29<br />
+      <strong>Due Date:</strong> 2026-08-28<br />
+      <strong>Currency:</strong> USD
+    </div>
+  </div>
+  <table>
+    <thead>
+      <tr><th>Description</th><th>Qty</th><th>Unit Price</th><th>Line Total</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Hydraulic Valve Assembly</td><td>4</td><td>USD 135.50</td><td>USD 542.00</td></tr>
+<tr><td>Steel Mounting Bracket</td><td>20</td><td>USD 12.75</td><td>USD 255.00</td></tr>
+<tr><td>Pressure Gauge 0-300 PSI</td><td>6</td><td>USD 48.20</td><td>USD 289.20</td></tr>
+    </tbody>
+  </table>
+  <table class="totals">
+    <tr><td>Subtotal</td><td>USD 1,086.20</td></tr>
+    <tr><td>Tax</td><td>USD 86.90</td></tr>
+    <tr><td>Shipping</td><td>USD 24.50</td></tr>
+    <tr><td><strong>Grand Total</strong></td><td><strong>USD 1,197.60</strong></td></tr>
+  </table>
+  <p><strong>Notes:</strong> Net 30 payment terms apply.</p>
+</body>
+</html>

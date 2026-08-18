@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>invoice_004</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 40px; color: #222; }
+    h1 { color: #1F4E79; margin-bottom: 8px; }
+    .meta { display: flex; justify-content: space-between; margin-bottom: 24px; }
+    .block { width: 48%; }
+    table { width: 100%; border-collapse: collapse; margin-top: 24px; }
+    th { background: #EAF2F8; text-align: left; padding: 10px; }
+    td { border-bottom: 1px solid #ddd; padding: 10px; }
+    .totals { margin-top: 20px; width: 320px; margin-left: auto; }
+    .totals td { border: none; padding: 6px 0; }
+  </style>
+</head>
+<body>
+  <h1>INVOICE</h1>
+  <p>Template: classic_blue | Pages: 1</p>
+  <div class="meta">
+    <div class="block">
+      <strong>Vendor</strong><br />
+      Bergmann Elektronik GmbH<br />
+      Kaiserstrasse 44, 60311 Frankfurt am Main, Germany<br />
+      +49-69-555-2041<br />
+      rechnung@bergmann-elektronik.test
+    </div>
+    <div class="block">
+      <strong>Bill To</strong><br />
+      Nordic Automation AS<br />
+      Dronning Eufemias gate 16, 0191 Oslo, Norway<br /><br />
+      <strong>Invoice No:</strong> BEG-2026-5519<br />
+      <strong>Invoice Date:</strong> 2026-06-18<br />
+      <strong>Due Date:</strong> 2026-07-18<br />
+      <strong>Currency:</strong> EUR
+    </div>
+  </div>
+  <table>
+    <thead>
+      <tr><th>Description</th><th>Qty</th><th>Unit Price</th><th>Line Total</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Industrial Sensor Module</td><td>12</td><td>EUR 84.50</td><td>EUR 1,014.00</td></tr>
+<tr><td>Control Relay Unit</td><td>8</td><td>EUR 126.75</td><td>EUR 1,014.00</td></tr>
+<tr><td>Installation Kit</td><td>5</td><td>EUR 39.90</td><td>EUR 199.50</td></tr>
+    </tbody>
+  </table>
+  <table class="totals">
+    <tr><td>Subtotal</td><td>EUR 2,227.50</td></tr>
+    <tr><td>Tax</td><td>EUR 423.23</td></tr>
+    <tr><td>Shipping</td><td>EUR 35.00</td></tr>
+    <tr><td><strong>Grand Total</strong></td><td><strong>EUR 2,685.73</strong></td></tr>
+  </table>
+  <p><strong>Notes:</strong> Payment due within 30 days.</p>
+</body>
+</html>

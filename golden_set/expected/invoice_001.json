@@ -1,0 +1,142 @@
+{
+  "sample_id": "invoice_001",
+  "template": "classic_blue",
+  "page_count": 1,
+  "source_files": {
+    "html": "inputs/invoice_001.html",
+    "pdf": "inputs/invoice_001.pdf",
+    "png": [
+      "inputs/invoice_001_page_1.png"
+    ]
+  },
+  "ground_truth": {
+    "vendor_name": "Northwind Office Supplies Ltd",
+    "vendor_address": "145 Lakeview Avenue, Seattle, WA 98101, USA",
+    "customer_name": "BluePeak Analytics",
+    "customer_address": "22 Market Street, San Francisco, CA 94105, USA",
+    "invoice_number": "NWO-2026-0001",
+    "invoice_date": "2026-08-10",
+    "due_date": "2026-08-25",
+    "currency": "USD",
+    "line_items": [
+      {
+        "description": "A4 Copy Paper Box",
+        "quantity": 10,
+        "unit_price": 24.5,
+        "line_total": 245.0
+      },
+      {
+        "description": "Black Toner Cartridge",
+        "quantity": 3,
+        "unit_price": 89.99,
+        "line_total": 269.97
+      },
+      {
+        "description": "Desk Organizer Set",
+        "quantity": 5,
+        "unit_price": 18.0,
+        "line_total": 90.0
+      }
+    ],
+    "totals": {
+      "subtotal": 604.97,
+      "tax": 48.4,
+      "shipping": 15.0,
+      "grand_total": 668.37
+    },
+    "payment": {
+      "bank_name": "Demo Commercial Bank",
+      "account_name": "Northwind Office Supplies Ltd",
+      "account_number": "XXXX-XXXX-1024"
+    },
+    "notes": "Thank you for your business."
+  },
+  "bounding_boxes": {
+    "invoice_number": {
+      "page": 1,
+      "bbox": [
+        940,
+        190,
+        1120,
+        220
+      ]
+    },
+    "invoice_date": {
+      "page": 1,
+      "bbox": [
+        940,
+        224,
+        1120,
+        254
+      ]
+    },
+    "due_date": {
+      "page": 1,
+      "bbox": [
+        940,
+        258,
+        1120,
+        288
+      ]
+    },
+    "vendor_name": {
+      "page": 1,
+      "bbox": [
+        90,
+        190,
+        530,
+        220
+      ]
+    },
+    "customer_name": {
+      "page": 1,
+      "bbox": [
+        760,
+        350,
+        1120,
+        378
+      ]
+    },
+    "line_items": [
+      {
+        "description": "A4 Copy Paper Box",
+        "page": 1,
+        "bbox": [
+          114,
+          540,
+          1120,
+          568
+        ]
+      },
+      {
+        "description": "Black Toner Cartridge",
+        "page": 1,
+        "bbox": [
+          114,
+          584,
+          1120,
+          612
+        ]
+      },
+      {
+        "description": "Desk Organizer Set",
+        "page": 1,
+        "bbox": [
+          114,
+          628,
+          1120,
+          656
+        ]
+      }
+    ],
+    "grand_total": {
+      "page": 1,
+      "bbox": [
+        980,
+        1578,
+        1120,
+        1608
+      ]
+    }
+  }
+}

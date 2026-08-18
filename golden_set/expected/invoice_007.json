@@ -1,0 +1,447 @@
+{
+  "sample_id": "invoice_007",
+  "template": "classic_blue",
+  "page_count": 2,
+  "source_files": {
+    "html": "inputs/invoice_007.html",
+    "pdf": "inputs/invoice_007.pdf",
+    "png": [
+      "inputs/invoice_007_page_1.png",
+      "inputs/invoice_007_page_2.png"
+    ]
+  },
+  "ground_truth": {
+    "vendor_name": "Atlas BuildWorks International",
+    "vendor_address": "500 Harbor Plaza, Boston, MA 02110, USA",
+    "customer_name": "Orchid Property Group",
+    "customer_address": "18 Cedar Lane, Austin, TX 78701, USA",
+    "invoice_number": "ATL-2026-007",
+    "invoice_date": "2026-08-08",
+    "due_date": "2026-09-07",
+    "currency": "USD",
+    "line_items": [
+      {
+        "description": "Project Item 01 - Service and materials package",
+        "quantity": 2,
+        "unit_price": 56.0,
+        "line_total": 112.0
+      },
+      {
+        "description": "Project Item 02 - Service and materials package",
+        "quantity": 3,
+        "unit_price": 78.25,
+        "line_total": 234.75
+      },
+      {
+        "description": "Project Item 03 - Service and materials package",
+        "quantity": 4,
+        "unit_price": 15.75,
+        "line_total": 63.0
+      },
+      {
+        "description": "Project Item 04 - Service and materials package",
+        "quantity": 5,
+        "unit_price": 99.99,
+        "line_total": 499.95
+      },
+      {
+        "description": "Project Item 05 - Service and materials package",
+        "quantity": 1,
+        "unit_price": 42.1,
+        "line_total": 42.1
+      },
+      {
+        "description": "Project Item 06 - Service and materials package",
+        "quantity": 2,
+        "unit_price": 12.6,
+        "line_total": 25.2
+      },
+      {
+        "description": "Project Item 07 - Service and materials package",
+        "quantity": 3,
+        "unit_price": 64.8,
+        "line_total": 194.4
+      },
+      {
+        "description": "Project Item 08 - Service and materials package",
+        "quantity": 4,
+        "unit_price": 88.4,
+        "line_total": 353.6
+      },
+      {
+        "description": "Project Item 09 - Service and materials package",
+        "quantity": 5,
+        "unit_price": 27.35,
+        "line_total": 136.75
+      },
+      {
+        "description": "Project Item 10 - Service and materials package",
+        "quantity": 1,
+        "unit_price": 32.5,
+        "line_total": 32.5
+      },
+      {
+        "description": "Project Item 11 - Service and materials package",
+        "quantity": 2,
+        "unit_price": 56.0,
+        "line_total": 112.0
+      },
+      {
+        "description": "Project Item 12 - Service and materials package",
+        "quantity": 3,
+        "unit_price": 78.25,
+        "line_total": 234.75
+      },
+      {
+        "description": "Project Item 13 - Service and materials package",
+        "quantity": 4,
+        "unit_price": 15.75,
+        "line_total": 63.0
+      },
+      {
+        "description": "Project Item 14 - Service and materials package",
+        "quantity": 5,
+        "unit_price": 99.99,
+        "line_total": 499.95
+      },
+      {
+        "description": "Project Item 15 - Service and materials package",
+        "quantity": 1,
+        "unit_price": 42.1,
+        "line_total": 42.1
+      },
+      {
+        "description": "Project Item 16 - Service and materials package",
+        "quantity": 2,
+        "unit_price": 12.6,
+        "line_total": 25.2
+      },
+      {
+        "description": "Project Item 17 - Service and materials package",
+        "quantity": 3,
+        "unit_price": 64.8,
+        "line_total": 194.4
+      },
+      {
+        "description": "Project Item 18 - Service and materials package",
+        "quantity": 4,
+        "unit_price": 88.4,
+        "line_total": 353.6
+      },
+      {
+        "description": "Project Item 19 - Service and materials package",
+        "quantity": 5,
+        "unit_price": 27.35,
+        "line_total": 136.75
+      },
+      {
+        "description": "Project Item 20 - Service and materials package",
+        "quantity": 1,
+        "unit_price": 32.5,
+        "line_total": 32.5
+      },
+      {
+        "description": "Project Item 21 - Service and materials package",
+        "quantity": 2,
+        "unit_price": 56.0,
+        "line_total": 112.0
+      },
+      {
+        "description": "Project Item 22 - Service and materials package",
+        "quantity": 3,
+        "unit_price": 78.25,
+        "line_total": 234.75
+      }
+    ],
+    "totals": {
+      "subtotal": 3735.25,
+      "tax": 448.23,
+      "shipping": 45.0,
+      "grand_total": 4228.48
+    },
+    "payment": {
+      "bank_name": "Harbor City Bank",
+      "account_name": "Atlas BuildWorks International",
+      "account_number": "XXXX-8844-2101"
+    },
+    "notes": "This sample is intentionally multi-page for OCR and pagination testing."
+  },
+  "bounding_boxes": {
+    "invoice_number": {
+      "page": 1,
+      "bbox": [
+        940,
+        190,
+        1120,
+        220
+      ]
+    },
+    "invoice_date": {
+      "page": 1,
+      "bbox": [
+        940,
+        224,
+        1120,
+        254
+      ]
+    },
+    "due_date": {
+      "page": 1,
+      "bbox": [
+        940,
+        258,
+        1120,
+        288
+      ]
+    },
+    "vendor_name": {
+      "page": 1,
+      "bbox": [
+        90,
+        190,
+        530,
+        220
+      ]
+    },
+    "customer_name": {
+      "page": 1,
+      "bbox": [
+        760,
+        350,
+        1120,
+        378
+      ]
+    },
+    "line_items": [
+      {
+        "description": "Project Item 01 - Service and materials package",
+        "page": 1,
+        "bbox": [
+          114,
+          540,
+          1120,
+          568
+        ]
+      },
+      {
+        "description": "Project Item 02 - Service and materials package",
+        "page": 1,
+        "bbox": [
+          114,
+          584,
+          1120,
+          612
+        ]
+      },
+      {
+        "description": "Project Item 03 - Service and materials package",
+        "page": 1,
+        "bbox": [
+          114,
+          628,
+          1120,
+          656
+        ]
+      },
+      {
+        "description": "Project Item 04 - Service and materials package",
+        "page": 1,
+        "bbox": [
+          114,
+          672,
+          1120,
+          700
+        ]
+      },
+      {
+        "description": "Project Item 05 - Service and materials package",
+        "page": 1,
+        "bbox": [
+          114,
+          716,
+          1120,
+          744
+        ]
+      },
+      {
+        "description": "Project Item 06 - Service and materials package",
+        "page": 1,
+        "bbox": [
+          114,
+          760,
+          1120,
+          788
+        ]
+      },
+      {
+        "description": "Project Item 07 - Service and materials package",
+        "page": 1,
+        "bbox": [
+          114,
+          804,
+          1120,
+          832
+        ]
+      },
+      {
+        "description": "Project Item 08 - Service and materials package",
+        "page": 1,
+        "bbox": [
+          114,
+          848,
+          1120,
+          876
+        ]
+      },
+      {
+        "description": "Project Item 09 - Service and materials package",
+        "page": 1,
+        "bbox": [
+          114,
+          892,
+          1120,
+          920
+        ]
+      },
+      {
+        "description": "Project Item 10 - Service and materials package",
+        "page": 1,
+        "bbox": [
+          114,
+          936,
+          1120,
+          964
+        ]
+      },
+      {
+        "description": "Project Item 11 - Service and materials package",
+        "page": 1,
+        "bbox": [
+          114,
+          980,
+          1120,
+          1008
+        ]
+      },
+      {
+        "description": "Project Item 12 - Service and materials package",
+        "page": 1,
+        "bbox": [
+          114,
+          1024,
+          1120,
+          1052
+        ]
+      },
+      {
+        "description": "Project Item 13 - Service and materials package",
+        "page": 1,
+        "bbox": [
+          114,
+          1068,
+          1120,
+          1096
+        ]
+      },
+      {
+        "description": "Project Item 14 - Service and materials package",
+        "page": 1,
+        "bbox": [
+          114,
+          1112,
+          1120,
+          1140
+        ]
+      },
+      {
+        "description": "Project Item 15 - Service and materials package",
+        "page": 1,
+        "bbox": [
+          114,
+          1156,
+          1120,
+          1184
+        ]
+      },
+      {
+        "description": "Project Item 16 - Service and materials package",
+        "page": 1,
+        "bbox": [
+          114,
+          1200,
+          1120,
+          1228
+        ]
+      },
+      {
+        "description": "Project Item 17 - Service and materials package",
+        "page": 1,
+        "bbox": [
+          114,
+          1244,
+          1120,
+          1272
+        ]
+      },
+      {
+        "description": "Project Item 18 - Service and materials package",
+        "page": 1,
+        "bbox": [
+          114,
+          1288,
+          1120,
+          1316
+        ]
+      },
+      {
+        "description": "Project Item 19 - Service and materials package",
+        "page": 2,
+        "bbox": [
+          114,
+          540,
+          1120,
+          568
+        ]
+      },
+      {
+        "description": "Project Item 20 - Service and materials package",
+        "page": 2,
+        "bbox": [
+          114,
+          584,
+          1120,
+          612
+        ]
+      },
+      {
+        "description": "Project Item 21 - Service and materials package",
+        "page": 2,
+        "bbox": [
+          114,
+          628,
+          1120,
+          656
+        ]
+      },
+      {
+        "description": "Project Item 22 - Service and materials package",
+        "page": 2,
+        "bbox": [
+          114,
+          672,
+          1120,
+          700
+        ]
+      }
+    ],
+    "grand_total": {
+      "page": 2,
+      "bbox": [
+        980,
+        1578,
+        1120,
+        1608
+      ]
+    }
+  }
+}
