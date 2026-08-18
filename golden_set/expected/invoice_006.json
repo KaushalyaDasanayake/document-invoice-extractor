@@ -1,0 +1,142 @@
+{
+  "sample_id": "invoice_006",
+  "template": "bold_orange",
+  "page_count": 1,
+  "source_files": {
+    "html": "inputs/invoice_006.html",
+    "pdf": "inputs/invoice_006.pdf",
+    "png": [
+      "inputs/invoice_006_page_1.png"
+    ]
+  },
+  "ground_truth": {
+    "vendor_name": "Cape Horizon Logistics Pty Ltd",
+    "vendor_address": "41 Dockyard Lane, Cape Town 8001, South Africa",
+    "customer_name": "SunGrid Energy Solutions",
+    "customer_address": "12 Independence Avenue, Windhoek, Namibia",
+    "invoice_number": "CHL-2026-390",
+    "invoice_date": "2026-07-12",
+    "due_date": "2026-07-26",
+    "currency": "ZAR",
+    "line_items": [
+      {
+        "description": "Cross-border Freight Service",
+        "quantity": 1,
+        "unit_price": 18500.0,
+        "line_total": 18500.0
+      },
+      {
+        "description": "Warehouse Handling Fee",
+        "quantity": 3,
+        "unit_price": 1450.0,
+        "line_total": 4350.0
+      },
+      {
+        "description": "Customs Documentation",
+        "quantity": 2,
+        "unit_price": 950.0,
+        "line_total": 1900.0
+      }
+    ],
+    "totals": {
+      "subtotal": 24750.0,
+      "tax": 3712.5,
+      "shipping": 0.0,
+      "grand_total": 28462.5
+    },
+    "payment": {
+      "bank_name": "Atlantic Commercial Bank",
+      "account_name": "Cape Horizon Logistics Pty Ltd",
+      "account_number": "XXXX-0048-91"
+    },
+    "notes": "Late payments may incur a service charge."
+  },
+  "bounding_boxes": {
+    "invoice_number": {
+      "page": 1,
+      "bbox": [
+        940,
+        190,
+        1120,
+        220
+      ]
+    },
+    "invoice_date": {
+      "page": 1,
+      "bbox": [
+        940,
+        224,
+        1120,
+        254
+      ]
+    },
+    "due_date": {
+      "page": 1,
+      "bbox": [
+        940,
+        258,
+        1120,
+        288
+      ]
+    },
+    "vendor_name": {
+      "page": 1,
+      "bbox": [
+        90,
+        190,
+        530,
+        220
+      ]
+    },
+    "customer_name": {
+      "page": 1,
+      "bbox": [
+        760,
+        350,
+        1120,
+        378
+      ]
+    },
+    "line_items": [
+      {
+        "description": "Cross-border Freight Service",
+        "page": 1,
+        "bbox": [
+          114,
+          540,
+          1120,
+          568
+        ]
+      },
+      {
+        "description": "Warehouse Handling Fee",
+        "page": 1,
+        "bbox": [
+          114,
+          584,
+          1120,
+          612
+        ]
+      },
+      {
+        "description": "Customs Documentation",
+        "page": 1,
+        "bbox": [
+          114,
+          628,
+          1120,
+          656
+        ]
+      }
+    ],
+    "grand_total": {
+      "page": 1,
+      "bbox": [
+        980,
+        1578,
+        1120,
+        1608
+      ]
+    }
+  }
+}

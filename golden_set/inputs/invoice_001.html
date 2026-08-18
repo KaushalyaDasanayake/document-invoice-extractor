@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>invoice_001</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 40px; color: #222; }
+    h1 { color: #1F4E79; margin-bottom: 8px; }
+    .meta { display: flex; justify-content: space-between; margin-bottom: 24px; }
+    .block { width: 48%; }
+    table { width: 100%; border-collapse: collapse; margin-top: 24px; }
+    th { background: #EAF2F8; text-align: left; padding: 10px; }
+    td { border-bottom: 1px solid #ddd; padding: 10px; }
+    .totals { margin-top: 20px; width: 320px; margin-left: auto; }
+    .totals td { border: none; padding: 6px 0; }
+  </style>
+</head>
+<body>
+  <h1>INVOICE</h1>
+  <p>Template: classic_blue | Pages: 1</p>
+  <div class="meta">
+    <div class="block">
+      <strong>Vendor</strong><br />
+      Northwind Office Supplies Ltd<br />
+      145 Lakeview Avenue, Seattle, WA 98101, USA<br />
+      +1-206-555-0147<br />
+      billing@northwind-office.test
+    </div>
+    <div class="block">
+      <strong>Bill To</strong><br />
+      BluePeak Analytics<br />
+      22 Market Street, San Francisco, CA 94105, USA<br /><br />
+      <strong>Invoice No:</strong> NWO-2026-0001<br />
+      <strong>Invoice Date:</strong> 2026-08-10<br />
+      <strong>Due Date:</strong> 2026-08-25<br />
+      <strong>Currency:</strong> USD
+    </div>
+  </div>
+  <table>
+    <thead>
+      <tr><th>Description</th><th>Qty</th><th>Unit Price</th><th>Line Total</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>A4 Copy Paper Box</td><td>10</td><td>USD 24.50</td><td>USD 245.00</td></tr>
+<tr><td>Black Toner Cartridge</td><td>3</td><td>USD 89.99</td><td>USD 269.97</td></tr>
+<tr><td>Desk Organizer Set</td><td>5</td><td>USD 18.00</td><td>USD 90.00</td></tr>
+    </tbody>
+  </table>
+  <table class="totals">
+    <tr><td>Subtotal</td><td>USD 604.97</td></tr>
+    <tr><td>Tax</td><td>USD 48.40</td></tr>
+    <tr><td>Shipping</td><td>USD 15.00</td></tr>
+    <tr><td><strong>Grand Total</strong></td><td><strong>USD 668.37</strong></td></tr>
+  </table>
+  <p><strong>Notes:</strong> Thank you for your business.</p>
+</body>
+</html>

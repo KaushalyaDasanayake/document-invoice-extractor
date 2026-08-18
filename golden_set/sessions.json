@@ -1,0 +1,100 @@
+[
+  {
+    "session_id": "invoice_001",
+    "input": {
+      "html": "inputs/invoice_001.html",
+      "pdf": "inputs/invoice_001.pdf",
+      "png": [
+        "inputs/invoice_001_page_1.png"
+      ]
+    },
+    "expected_output": "expected/invoice_001.json",
+    "summary": "classic_blue invoice in USD with 3 line items across 1 page(s)."
+  },
+  {
+    "session_id": "invoice_002",
+    "input": {
+      "html": "inputs/invoice_002.html",
+      "pdf": "inputs/invoice_002.pdf",
+      "png": [
+        "inputs/invoice_002_page_1.png"
+      ]
+    },
+    "expected_output": "expected/invoice_002.json",
+    "summary": "minimal_green invoice in USD with 3 line items across 1 page(s)."
+  },
+  {
+    "session_id": "invoice_003",
+    "input": {
+      "html": "inputs/invoice_003.html",
+      "pdf": "inputs/invoice_003.pdf",
+      "png": [
+        "inputs/invoice_003_page_1.png"
+      ]
+    },
+    "expected_output": "expected/invoice_003.json",
+    "summary": "bold_orange invoice in CAD with 3 line items across 1 page(s)."
+  },
+  {
+    "session_id": "invoice_004",
+    "input": {
+      "html": "inputs/invoice_004.html",
+      "pdf": "inputs/invoice_004.pdf",
+      "png": [
+        "inputs/invoice_004_page_1.png"
+      ]
+    },
+    "expected_output": "expected/invoice_004.json",
+    "summary": "classic_blue invoice in EUR with 3 line items across 1 page(s)."
+  },
+  {
+    "session_id": "invoice_005",
+    "input": {
+      "html": "inputs/invoice_005.html",
+      "pdf": "inputs/invoice_005.pdf",
+      "png": [
+        "inputs/invoice_005_page_1.png"
+      ]
+    },
+    "expected_output": "expected/invoice_005.json",
+    "summary": "minimal_green invoice in JPY with 3 line items across 1 page(s)."
+  },
+  {
+    "session_id": "invoice_006",
+    "input": {
+      "html": "inputs/invoice_006.html",
+      "pdf": "inputs/invoice_006.pdf",
+      "png": [
+        "inputs/invoice_006_page_1.png"
+      ]
+    },
+    "expected_output": "expected/invoice_006.json",
+    "summary": "bold_orange invoice in ZAR with 3 line items across 1 page(s)."
+  },
+  {
+    "session_id": "invoice_007",
+    "input": {
+      "html": "inputs/invoice_007.html",
+      "pdf": "inputs/invoice_007.pdf",
+      "png": [
+        "inputs/invoice_007_page_1.png",
+        "inputs/invoice_007_page_2.png"
+      ]
+    },
+    "expected_output": "expected/invoice_007.json",
+    "summary": "classic_blue invoice in USD with 22 line items across 2 page(s)."
+  },
+  {
+    "session_id": "invoice_008",
+    "input": {
+      "html": "inputs/invoice_008.html",
+      "pdf": "inputs/invoice_008.pdf",
+      "png": [
+        "inputs/invoice_008_page_1.png",
+        "inputs/invoice_008_page_2.png"
+      ]
+    },
+    "expected_output": "expected/invoice_008.json",
+    "summary": "minimal_green invoice in EUR with 22 line items across 2 page(s)."
+  }
+]

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>invoice_006</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 40px; color: #222; }
+    h1 { color: #B85C00; margin-bottom: 8px; }
+    .meta { display: flex; justify-content: space-between; margin-bottom: 24px; }
+    .block { width: 48%; }
+    table { width: 100%; border-collapse: collapse; margin-top: 24px; }
+    th { background: #FFF1E5; text-align: left; padding: 10px; }
+    td { border-bottom: 1px solid #ddd; padding: 10px; }
+    .totals { margin-top: 20px; width: 320px; margin-left: auto; }
+    .totals td { border: none; padding: 6px 0; }
+  </style>
+</head>
+<body>
+  <h1>INVOICE</h1>
+  <p>Template: bold_orange | Pages: 1</p>
+  <div class="meta">
+    <div class="block">
+      <strong>Vendor</strong><br />
+      Cape Horizon Logistics Pty Ltd<br />
+      41 Dockyard Lane, Cape Town 8001, South Africa<br />
+      +27-21-555-0199<br />
+      invoices@capehorizon-logistics.test
+    </div>
+    <div class="block">
+      <strong>Bill To</strong><br />
+      SunGrid Energy Solutions<br />
+      12 Independence Avenue, Windhoek, Namibia<br /><br />
+      <strong>Invoice No:</strong> CHL-2026-390<br />
+      <strong>Invoice Date:</strong> 2026-07-12<br />
+      <strong>Due Date:</strong> 2026-07-26<br />
+      <strong>Currency:</strong> ZAR
+    </div>
+  </div>
+  <table>
+    <thead>
+      <tr><th>Description</th><th>Qty</th><th>Unit Price</th><th>Line Total</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Cross-border Freight Service</td><td>1</td><td>ZAR 18,500.00</td><td>ZAR 18,500.00</td></tr>
+<tr><td>Warehouse Handling Fee</td><td>3</td><td>ZAR 1,450.00</td><td>ZAR 4,350.00</td></tr>
+<tr><td>Customs Documentation</td><td>2</td><td>ZAR 950.00</td><td>ZAR 1,900.00</td></tr>
+    </tbody>
+  </table>
+  <table class="totals">
+    <tr><td>Subtotal</td><td>ZAR 24,750.00</td></tr>
+    <tr><td>Tax</td><td>ZAR 3,712.50</td></tr>
+    <tr><td>Shipping</td><td>ZAR 0.00</td></tr>
+    <tr><td><strong>Grand Total</strong></td><td><strong>ZAR 28,462.50</strong></td></tr>
+  </table>
+  <p><strong>Notes:</strong> Late payments may incur a service charge.</p>
+</body>
+</html>

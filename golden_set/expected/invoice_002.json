@@ -1,0 +1,142 @@
+{
+  "sample_id": "invoice_002",
+  "template": "minimal_green",
+  "page_count": 1,
+  "source_files": {
+    "html": "inputs/invoice_002.html",
+    "pdf": "inputs/invoice_002.pdf",
+    "png": [
+      "inputs/invoice_002_page_1.png"
+    ]
+  },
+  "ground_truth": {
+    "vendor_name": "GreenField Industrial Parts Co",
+    "vendor_address": "88 Foundry Road, Columbus, OH 43215, USA",
+    "customer_name": "Vertex Mechanical Services",
+    "customer_address": "410 River Park Drive, Pittsburgh, PA 15222, USA",
+    "invoice_number": "GFI-2026-1042",
+    "invoice_date": "2026-07-29",
+    "due_date": "2026-08-28",
+    "currency": "USD",
+    "line_items": [
+      {
+        "description": "Hydraulic Valve Assembly",
+        "quantity": 4,
+        "unit_price": 135.5,
+        "line_total": 542.0
+      },
+      {
+        "description": "Steel Mounting Bracket",
+        "quantity": 20,
+        "unit_price": 12.75,
+        "line_total": 255.0
+      },
+      {
+        "description": "Pressure Gauge 0-300 PSI",
+        "quantity": 6,
+        "unit_price": 48.2,
+        "line_total": 289.2
+      }
+    ],
+    "totals": {
+      "subtotal": 1086.2,
+      "tax": 86.9,
+      "shipping": 24.5,
+      "grand_total": 1197.6
+    },
+    "payment": {
+      "bank_name": "Midwest Trade Bank",
+      "account_name": "GreenField Industrial Parts Co",
+      "account_number": "XXXX-XXXX-3318"
+    },
+    "notes": "Net 30 payment terms apply."
+  },
+  "bounding_boxes": {
+    "invoice_number": {
+      "page": 1,
+      "bbox": [
+        940,
+        190,
+        1120,
+        220
+      ]
+    },
+    "invoice_date": {
+      "page": 1,
+      "bbox": [
+        940,
+        224,
+        1120,
+        254
+      ]
+    },
+    "due_date": {
+      "page": 1,
+      "bbox": [
+        940,
+        258,
+        1120,
+        288
+      ]
+    },
+    "vendor_name": {
+      "page": 1,
+      "bbox": [
+        90,
+        190,
+        530,
+        220
+      ]
+    },
+    "customer_name": {
+      "page": 1,
+      "bbox": [
+        760,
+        350,
+        1120,
+        378
+      ]
+    },
+    "line_items": [
+      {
+        "description": "Hydraulic Valve Assembly",
+        "page": 1,
+        "bbox": [
+          114,
+          540,
+          1120,
+          568
+        ]
+      },
+      {
+        "description": "Steel Mounting Bracket",
+        "page": 1,
+        "bbox": [
+          114,
+          584,
+          1120,
+          612
+        ]
+      },
+      {
+        "description": "Pressure Gauge 0-300 PSI",
+        "page": 1,
+        "bbox": [
+          114,
+          628,
+          1120,
+          656
+        ]
+      }
+    ],
+    "grand_total": {
+      "page": 1,
+      "bbox": [
+        980,
+        1578,
+        1120,
+        1608
+      ]
+    }
+  }
+}

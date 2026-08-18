@@ -1,0 +1,17 @@
+golden_set:
+  inputs_dir: golden_set/inputs        # PDF/PNG/HTML source invoices
+  expected_dir: golden_set/expected    # per-invoice ground truth JSON
+  registry: golden_set/invoices_v1.json
+  sessions: golden_set/sessions.json
+  eval_dir: "eval"                     # metrics output
+
+schema:
+  version: "v1"
+  path: golden_set/invoices_v1.json
+
+regenerate: false   # set true to rebuild the golden set; never run casually
+
+# Completion gate used by `make golden` / run_eval.py
+min_samples: 8
+min_field_precision: 1.0
+min_field_recall: 1.0

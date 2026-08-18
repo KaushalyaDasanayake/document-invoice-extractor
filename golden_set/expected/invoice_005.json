@@ -1,0 +1,142 @@
+{
+  "sample_id": "invoice_005",
+  "template": "minimal_green",
+  "page_count": 1,
+  "source_files": {
+    "html": "inputs/invoice_005.html",
+    "pdf": "inputs/invoice_005.pdf",
+    "png": [
+      "inputs/invoice_005_page_1.png"
+    ]
+  },
+  "ground_truth": {
+    "vendor_name": "Sakura Medical Consumables KK",
+    "vendor_address": "2-14-7 Nihonbashi, Chuo-ku, Tokyo 103-0027, Japan",
+    "customer_name": "Pacific Care Hospital",
+    "customer_address": "85 Orchard Boulevard, Singapore 238880, Singapore",
+    "invoice_number": "SMC-2026-2304",
+    "invoice_date": "2026-08-05",
+    "due_date": "2026-09-04",
+    "currency": "JPY",
+    "line_items": [
+      {
+        "description": "Disposable Examination Gloves",
+        "quantity": 50,
+        "unit_price": 1200,
+        "line_total": 60000
+      },
+      {
+        "description": "Sterile Syringe Pack",
+        "quantity": 30,
+        "unit_price": 1850,
+        "line_total": 55500
+      },
+      {
+        "description": "Surgical Mask Carton",
+        "quantity": 40,
+        "unit_price": 980,
+        "line_total": 39200
+      }
+    ],
+    "totals": {
+      "subtotal": 154700,
+      "tax": 15470,
+      "shipping": 3200,
+      "grand_total": 173370
+    },
+    "payment": {
+      "bank_name": "Tokyo Central Trust",
+      "account_name": "Sakura Medical Consumables KK",
+      "account_number": "XXXX-2194"
+    },
+    "notes": "Hospital procurement order PO-88421 referenced."
+  },
+  "bounding_boxes": {
+    "invoice_number": {
+      "page": 1,
+      "bbox": [
+        940,
+        190,
+        1120,
+        220
+      ]
+    },
+    "invoice_date": {
+      "page": 1,
+      "bbox": [
+        940,
+        224,
+        1120,
+        254
+      ]
+    },
+    "due_date": {
+      "page": 1,
+      "bbox": [
+        940,
+        258,
+        1120,
+        288
+      ]
+    },
+    "vendor_name": {
+      "page": 1,
+      "bbox": [
+        90,
+        190,
+        530,
+        220
+      ]
+    },
+    "customer_name": {
+      "page": 1,
+      "bbox": [
+        760,
+        350,
+        1120,
+        378
+      ]
+    },
+    "line_items": [
+      {
+        "description": "Disposable Examination Gloves",
+        "page": 1,
+        "bbox": [
+          114,
+          540,
+          1120,
+          568
+        ]
+      },
+      {
+        "description": "Sterile Syringe Pack",
+        "page": 1,
+        "bbox": [
+          114,
+          584,
+          1120,
+          612
+        ]
+      },
+      {
+        "description": "Surgical Mask Carton",
+        "page": 1,
+        "bbox": [
+          114,
+          628,
+          1120,
+          656
+        ]
+      }
+    ],
+    "grand_total": {
+      "page": 1,
+      "bbox": [
+        980,
+        1578,
+        1120,
+        1608
+      ]
+    }
+  }
+}
