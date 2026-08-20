@@ -1,0 +1,5 @@
+ocr:
+  lang: eng
+  psm: 6
+  dpi: 300
+  tesseract_cmd: /usr/bin/tesseract
