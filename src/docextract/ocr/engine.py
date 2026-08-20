@@ -84,29 +84,29 @@ def _extract_pdf(path: Path, ocr_config: dict[str, Any]) -> OcrResult:
     with tempfile.TemporaryDirectory(prefix="docextract-") as temp_dir:
         output_prefix = Path(temp_dir) / "page"
 
-    command = [
-        pdftoppm,
-        "-png",
-        "-r",
-        str(ocr_config["dpi"]),
-        str(path),
-        str(output_prefix),
-    ]
+        command = [
+            pdftoppm,
+            "-png",
+            "-r",
+            str(ocr_config["dpi"]),
+            str(path),
+            str(output_prefix),
+        ]
 
-    try:
-        subprocess.run(command, check=True, capture_output=True, text=True)
-    except subprocess.CalledProcessError as error:
-        message = error.stderr.strip() or "pdftoppm failed"
-        raise RuntimeError(message) from error
+        try:
+            subprocess.run(command, check=True, capture_output=True, text=True)
+        except subprocess.CalledProcessError as error:
+            message = error.stderr.strip() or "pdftoppm failed"
+            raise RuntimeError(message) from error
 
-    page_paths = sorted(Path(temp_dir).glob("page-*.png"))
-    if not page_paths:
-        raise RuntimeError("pdftoppm produced no page images")
+        page_paths = sorted(Path(temp_dir).glob("page-*.png"))
+        if not page_paths:
+            raise RuntimeError("pdftoppm produced no page images")
 
-    page_text = []
-    for page_path in page_paths:
-        with Image.open(page_path) as image:
-            page_text.append(_ocr_image(image.convert("RGB"), ocr_config))
+        page_text = []
+        for page_path in page_paths:
+            with Image.open(page_path) as image:
+                page_text.append(_ocr_image(image.convert("RGB"), ocr_config))
 
     return OcrResult(
         raw_text="\n\n".join(page_text),
