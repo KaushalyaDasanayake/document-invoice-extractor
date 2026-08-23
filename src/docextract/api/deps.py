@@ -1,18 +1,34 @@
-from fastapi import Depends, Request
-from typing import Annotated
+"""Application dependencies"""
+
+from __future__ import annotations
+from pathlib import Path
+from fastapi import Depends
+from typing import Annotated, Callable
 
 from docextract.ocr.engine import extract as ocr_extract, OcrResult
 from docextract.config import load_config
 
+# The type every caller uses. A fake engine must match this signature.
+OCRCallable = Callable[[str | Path], OcrResult]
 
-def get_ocr_engine():
-    """Build and return the real OCR engine(Tesseract + config).
-    
-    Injected as the default so routes don't know where OCR logic is. Tests replace this dependency with a fake that returns fast.
+
+def _build_engine() -> OCRCallable:
+    """Build and return the real OCR engine bound to the loaded config.
+
+    The config is loaded once here, not per request. Returns a plain
+    function with the same call shape the routes and the fake use.
     """
-    config = load_config() # returns base.yaml dict
-    return lambda path, cfg=config: ocr_extract(path, cfg)
+    config = load_config()
+    return lambda path: ocr_extract(path, config)
+
+
+def get_ocr_engine() -> OCRCallable:
+    """FastAPI dependency that injects the OCR engine into routes.
+
+    Tests override this dependency with a fake callable.
+    """
+    return _build_engine()
 
 
 # type alias so route signature stay readable
-OCRDep = Annotated[OcrResult, Depends(get_ocr_engine)]
+OCRDep = Annotated[OCRCallable, Depends(get_ocr_engine)]
