@@ -19,4 +19,4 @@ jobs:
       - name: Run golden evaluation smoke gate
         run: make eval
       - name: Run tests
-        run: pytest
+        run: pytest -m "not slow"

@@ -49,4 +49,5 @@ ignore = ["E501"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
+markers = ["slow: requires real OCR engine (run on demand, skipped in CI)"]
 addopts = "-q"
