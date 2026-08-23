@@ -180,5 +180,5 @@ def test_extract_pdf_missing_poppler(monkeypatch, pdf_file: Path) -> None:
 
     monkeypatch.setattr("docextract.ocr.engine.shutil.which", fake_which)
     monkeypatch.setattr(pytesseract, "image_to_string", lambda *a, **k: "x")
-    with pytest.raises(RuntimeError, match="poppler"):
+    with pytest.raises(RuntimeError, match="[Pp]oppler"):
         extract(pdf_file, VALID_CONFIG)
