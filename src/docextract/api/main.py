@@ -3,6 +3,7 @@ import tempfile
 from pathlib import Path
 
 from docextract.api.deps import OCRDep
+from docextract.api.auth import require_api_key
 from docextract.utils.logging import new_request_id, get_logger
 from docextract.schemas.response import ExtractResponse
 
@@ -35,7 +36,7 @@ async def ready(engine: OCRDep) -> dict[str, str]:
 
 
 
-@app.post("/v1/extract", response_model=ExtractResponse)
+@app.post("/v1/extract", response_model=ExtractResponse, dependencies=[Depends(require_api_key)])
 async def extract_route(
     file: UploadFile = File(...),
     engine: OCRDep = None,  # injected by FastAPI via dependency
