@@ -1,14 +1,12 @@
 from __future__ import annotations
 
 import json
-import math
 import shutil
 from datetime import datetime
 from pathlib import Path
 from typing import Any
 
 from PIL import Image, ImageDraw, ImageFont
-
 
 ROOT = Path(__file__).resolve().parents[1]
 INPUTS_DIR = ROOT / "golden_set" / "inputs"

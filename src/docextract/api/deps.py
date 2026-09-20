@@ -1,12 +1,16 @@
 """Application dependencies"""
 
 from __future__ import annotations
-from pathlib import Path
-from fastapi import Depends
-from typing import Annotated, Callable
 
-from docextract.ocr.engine import extract as ocr_extract, OcrResult
+from collections.abc import Callable
+from pathlib import Path
+from typing import Annotated
+
+from fastapi import Depends
+
 from docextract.config import load_config
+from docextract.ocr.engine import OcrResult
+from docextract.ocr.engine import extract as ocr_extract
 
 # The type every caller uses. A fake engine must match this signature.
 OCRCallable = Callable[[str | Path], OcrResult]

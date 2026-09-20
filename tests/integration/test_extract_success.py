@@ -7,10 +7,7 @@ is slow and CI-dependent (needs the tesseract binary), so CI skips it and run it
 
 from __future__ import annotations
 
-from pathlib import Path
-
 import pytest
-
 from fastapi.testclient import TestClient
 
 from docextract.api.main import app
