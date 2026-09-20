@@ -1,7 +1,8 @@
 from fastapi.testclient import TestClient
+
+from docextract.api.deps import get_ocr_engine
 from docextract.api.main import app
 from docextract.ocr.engine import OcrResult
-from docextract.api.deps import get_ocr_engine
 
 
 def fake_engine():

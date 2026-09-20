@@ -4,10 +4,9 @@ from __future__ import annotations
 
 from pathlib import Path
 
+import pytesseract  # referenced via monkeypatched module attr
 import pytest
 from PIL import Image, ImageDraw
-
-import pytesseract  # referenced via monkeypatched module attr
 
 from docextract.ocr.engine import OcrResult, extract
 

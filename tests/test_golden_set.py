@@ -10,8 +10,6 @@ import json
 import sys
 from pathlib import Path
 
-import pytest
-
 ROOT = Path(__file__).resolve().parents[1]
 GOLDEN_DIR = ROOT / "golden_set"
 EXPECTED_DIR = GOLDEN_DIR / "expected"

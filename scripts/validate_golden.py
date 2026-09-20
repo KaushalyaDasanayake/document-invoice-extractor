@@ -5,7 +5,6 @@ import sys
 from pathlib import Path
 from typing import Any
 
-
 ROOT = Path(__file__).resolve().parents[1]
 GOLDEN_DIR = ROOT / "golden_set"
 EXPECTED_DIR = GOLDEN_DIR / "expected"
