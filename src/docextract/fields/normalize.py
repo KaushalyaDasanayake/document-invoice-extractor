@@ -1,0 +1,69 @@
+"""Normalize extracted strings into canonical values.
+
+Each function takes a possibly-messy string and returns a clean canonical value or None if it cannot be parsed. Canonical types:
+    - date -> "YYYY-MM-DD" string
+    - amount -> float (no currency symbol, no thousands separator)
+"""
+
+from __future__ import annotations  # type hints
+
+import re
+from datetime import datetime
+
+_DATE_FORMATS: tuple[tuple[str, str], ...] = (
+    ("%Y-%m-%d", "%Y-%m-%d"), #ISO
+    ("%d/%m/%Y", "%Y-%m-%d"),
+    ("%m/%d/%Y", "%Y-%m-%d"),
+    ("%d-%m-%Y", "%Y-%m-%d"),
+    ("%b %d, %Y", "%Y-%m-%d"), # "Aug 10, 2026
+    ("%B %d, %Y", "%Y-%m-%d")  # "August 10, 2026
+)
+
+# amount normalizer 
+# regex pieces used to clean amount strings. `_CURRENCY_CHARS` matches a leading currency symbol 
+_CURRENCY_CHARS = re.compile(r"^\s*[$€£]|^\s*(?:USD|EUR|GBP|JPY|CAD)\s*", re.IGNORECASE)
+
+
+def normalize_date(value: str) -> str | None:
+    """Return the canonical 'YYYY-MM-DD' from a date string or none.
+    tries several common formats. if none match returns None.
+    """
+
+    cleaned = value.strip() # strip the whitespace
+    for input_fmt, output_fmt in _DATE_FORMATS:
+        try:
+            parsed = datetime.strptime(cleaned, input_fmt) 
+            return parsed.strftime(output_fmt)  
+        except ValueError:
+            continue
+    return None
+
+
+def normalize_amount(value: str) -> float | None:
+    """Return the canonical float value of a money string or none.
+    Accepts: '$1,234.56', '1.234,56', '1234.56', '1,234', 'USD 99.00'
+    Strips currency symobols and thousands separator
+    """
+    cleaned = value.strip()
+    # remove leading currency symbol if present
+    cleaned = _CURRENCY_CHARS.sub("", cleaned).strip()
+
+    if "," in cleaned and "." in cleaned:
+        # both present: rightmost is the decimal separator
+        if cleaned.rfind(",") > cleaned.rfind("."):
+            # comma is the decimal "1.234,56" -> "1234.56"
+            cleaned = cleaned.replace(".", "").replace(",", ".")
+        else:
+            # dot is the decimal "1,234.56" -> "1234.56"
+            cleaned = cleaned.replace(",", "")
+    elif "," in cleaned:
+        # only commas. if exactly one comma followed by 1-2 digits, treat as decimal
+        if re.match(r"^\d+,\d{1,2}$", cleaned):
+            cleaned = cleaned.replace(",", ".")
+        else:
+            cleaned = cleaned.replace(",", "")
+
+    try:
+        return float(cleaned)
+    except ValueError:
+        return None
