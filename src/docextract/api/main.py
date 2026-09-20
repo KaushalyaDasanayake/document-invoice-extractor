@@ -5,6 +5,8 @@ from fastapi import Depends, FastAPI, File, HTTPException, UploadFile
 
 from docextract.api.auth import require_api_key
 from docextract.api.deps import OCRDep
+from docextract.fields.extractors import extract_invoice
+from docextract.schemas.invoice import ExtractionResult
 from docextract.schemas.response import ExtractResponse
 from docextract.utils.logging import get_logger, new_request_id
 
@@ -48,4 +50,11 @@ async def extract_route(
         tmp.write(await file.read())
         tmp.flush()
         result = engine(tmp.name)
-    return ExtractResponse(raw_text=result.raw_text, num_pages=result.num_pages)
+
+        extracted_data = extract_invoice(result.raw_text)
+        invoice_obj = ExtractionResult.model_validate(extracted_data)
+    return ExtractResponse(
+        raw_text=result.raw_text, 
+        num_pages=result.num_pages,
+        invoice=invoice_obj
+        )

@@ -1,4 +1,8 @@
+from __future__ import annotations
+
 from pydantic import BaseModel, ConfigDict, Field
+
+from docextract.schemas.invoice import ExtractionResult
 
 
 class ExtractResponse(BaseModel):
@@ -11,3 +15,4 @@ class ExtractResponse(BaseModel):
     raw_text: str = Field(..., description="Raw text extracted from the document")
     # how many pages were OCR found
     num_pages: int = Field(..., ge=1, description="Number of pages processed")
+    invoice: ExtractionResult = Field(..., description="Structured extracted invoice fields")
