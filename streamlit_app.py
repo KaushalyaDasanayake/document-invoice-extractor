@@ -1,7 +1,16 @@
 import io
 import json
+import os
+import sys
 import tempfile
 from pathlib import Path
+
+# Add src to Python path so docextract package is discoverable on cloud environments
+ROOT = Path(__file__).resolve().parent
+src_path = str(ROOT / "src")
+if src_path not in sys.path:
+    sys.path.insert(0, src_path)
+
 import pandas as pd
 import streamlit as st
 
