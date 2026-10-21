@@ -1,12 +1,12 @@
 {
   "schema_version": "v1",
   "totals": {
-    "true_positive": 136,
-    "false_positive": 0,
-    "false_negative": 0
+    "true_positive": 84,
+    "false_positive": 20,
+    "false_negative": 52
   },
-  "precision": 1.0,
-  "recall": 1.0,
+  "precision": 0.8076923076923077,
+  "recall": 0.6176470588235294,
   "per_field": {
     "vendor_name": {
       "true_positive": 8,
@@ -24,9 +24,9 @@
       "false_negative": 0
     },
     "customer_address": {
-      "true_positive": 8,
-      "false_positive": 0,
-      "false_negative": 0
+      "true_positive": 5,
+      "false_positive": 3,
+      "false_negative": 3
     },
     "invoice_number": {
       "true_positive": 8,
@@ -44,14 +44,14 @@
       "false_negative": 0
     },
     "currency": {
-      "true_positive": 8,
-      "false_positive": 0,
-      "false_negative": 0
+      "true_positive": 6,
+      "false_positive": 2,
+      "false_negative": 2
     },
     "line_items": {
-      "true_positive": 8,
-      "false_positive": 0,
-      "false_negative": 0
+      "true_positive": 6,
+      "false_positive": 2,
+      "false_negative": 2
     },
     "totals.subtotal": {
       "true_positive": 8,
@@ -59,89 +59,89 @@
       "false_negative": 0
     },
     "totals.tax": {
-      "true_positive": 8,
-      "false_positive": 0,
-      "false_negative": 0
+      "true_positive": 3,
+      "false_positive": 5,
+      "false_negative": 5
     },
     "totals.shipping": {
-      "true_positive": 8,
-      "false_positive": 0,
-      "false_negative": 0
+      "true_positive": 6,
+      "false_positive": 2,
+      "false_negative": 2
     },
     "totals.grand_total": {
-      "true_positive": 8,
-      "false_positive": 0,
-      "false_negative": 0
+      "true_positive": 2,
+      "false_positive": 6,
+      "false_negative": 6
     },
     "payment.bank_name": {
-      "true_positive": 8,
+      "true_positive": 0,
       "false_positive": 0,
-      "false_negative": 0
+      "false_negative": 8
     },
     "payment.account_name": {
-      "true_positive": 8,
+      "true_positive": 0,
       "false_positive": 0,
-      "false_negative": 0
+      "false_negative": 8
     },
     "payment.account_number": {
-      "true_positive": 8,
+      "true_positive": 0,
       "false_positive": 0,
-      "false_negative": 0
+      "false_negative": 8
     },
     "notes": {
-      "true_positive": 8,
+      "true_positive": 0,
       "false_positive": 0,
-      "false_negative": 0
+      "false_negative": 8
     }
   },
   "samples": [
     {
       "sample_id": "invoice_001",
-      "matched_fields": 17,
+      "matched_fields": 12,
       "total_fields": 17,
-      "prediction_file": "golden_set/expected/invoice_001.json"
+      "prediction_file": "eval/predictions/invoice_001.json"
     },
     {
       "sample_id": "invoice_002",
-      "matched_fields": 17,
+      "matched_fields": 11,
       "total_fields": 17,
-      "prediction_file": "golden_set/expected/invoice_002.json"
+      "prediction_file": "eval/predictions/invoice_002.json"
     },
     {
       "sample_id": "invoice_003",
-      "matched_fields": 17,
+      "matched_fields": 10,
       "total_fields": 17,
-      "prediction_file": "golden_set/expected/invoice_003.json"
+      "prediction_file": "eval/predictions/invoice_003.json"
     },
     {
       "sample_id": "invoice_004",
-      "matched_fields": 17,
+      "matched_fields": 13,
       "total_fields": 17,
-      "prediction_file": "golden_set/expected/invoice_004.json"
+      "prediction_file": "eval/predictions/invoice_004.json"
     },
     {
       "sample_id": "invoice_005",
-      "matched_fields": 17,
+      "matched_fields": 8,
       "total_fields": 17,
-      "prediction_file": "golden_set/expected/invoice_005.json"
+      "prediction_file": "eval/predictions/invoice_005.json"
     },
     {
       "sample_id": "invoice_006",
-      "matched_fields": 17,
+      "matched_fields": 9,
       "total_fields": 17,
-      "prediction_file": "golden_set/expected/invoice_006.json"
+      "prediction_file": "eval/predictions/invoice_006.json"
     },
     {
       "sample_id": "invoice_007",
-      "matched_fields": 17,
+      "matched_fields": 12,
       "total_fields": 17,
-      "prediction_file": "golden_set/expected/invoice_007.json"
+      "prediction_file": "eval/predictions/invoice_007.json"
     },
     {
       "sample_id": "invoice_008",
-      "matched_fields": 17,
+      "matched_fields": 9,
       "total_fields": 17,
-      "prediction_file": "golden_set/expected/invoice_008.json"
+      "prediction_file": "eval/predictions/invoice_008.json"
     }
   ]
 }
