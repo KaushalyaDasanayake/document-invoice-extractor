@@ -19,19 +19,21 @@ COPY pyproject.toml .
 RUN pip install --no-cache-dir --upgrade pip && \
     pip install --no-cache-dir .
 
-# Copy application source code and configs
+# Copy application source code, configs, and UI
 COPY src/ ./src/
 COPY configs/ ./configs/
+COPY ui/ ./ui/
 
 # Reinstall docextract in editable or clean mode
 RUN pip install --no-cache-dir -e .
 
-EXPOSE 8000
+EXPOSE 7860
 
 ENV PYTHONUNBUFFERED=1 \
+    PORT=7860 \
     DOCEXTRACT_API_KEY=dev-key-change-in-prod
 
 HEALTHCHECK --interval=30s --timeout=5s --start-period=5s --retries=3 \
-    CMD curl -f http://localhost:8000/health || exit 1
+    CMD curl -f http://localhost:7860/health || exit 1
 
-CMD ["uvicorn", "docextract.api.main:app", "--host", "0.0.0.0", "--port", "8000"]
+CMD ["uvicorn", "docextract.api.main:app", "--host", "0.0.0.0", "--port", "7860"]
