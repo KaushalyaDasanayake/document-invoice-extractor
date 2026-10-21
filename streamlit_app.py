@@ -187,13 +187,6 @@ st.markdown(
         border-color: #3b82f6 !important;
         background-color: rgba(59, 130, 246, 0.03) !important;
     }
-    [data-testid="stFileUploader"] section > input + div {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        gap: 0.5rem;
-    }
     [data-testid="stFileUploader"] button {
         background-color: #1e293b !important;
         color: #f1f5f9 !important;
@@ -201,20 +194,25 @@ st.markdown(
         font-weight: 600 !important;
         border-radius: 8px !important;
         font-size: 0.84rem !important;
-        line-height: 1 !important;
-        padding: 0.55rem 1.15rem !important;
+        padding: 0.45rem 1rem !important;
         display: inline-flex !important;
         align-items: center !important;
         justify-content: center !important;
-        gap: 0.4rem !important;
-        margin: 0 !important;
-        white-space: nowrap !important;
+        box-shadow: none !important;
         transition: all 0.15s ease !important;
     }
+    /* Strip any pseudo-elements completely to prevent label cloning */
     [data-testid="stFileUploader"] button::before,
-    [data-testid="stFileUploader"] button::after {
+    [data-testid="stFileUploader"] button::after,
+    [data-testid="stFileUploader"] button *::before,
+    [data-testid="stFileUploader"] button *::after {
         content: none !important;
         display: none !important;
+    }
+    /* Ensure child span or text node inherits cleanly without duplication */
+    [data-testid="stFileUploader"] button > * {
+        display: inline !important;
+        line-height: inherit !important;
     }
     [data-testid="stFileUploader"] button:hover {
         background-color: #2b3245 !important;
@@ -224,7 +222,7 @@ st.markdown(
     [data-testid="stFileUploader"] small {
         color: #64748b !important;
         font-size: 0.76rem !important;
-        margin-top: 0.25rem !important;
+        margin-top: 0.35rem !important;
     }
 
     /* Standardized Metric Cards */
