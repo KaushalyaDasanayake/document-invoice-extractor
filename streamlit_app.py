@@ -38,9 +38,15 @@ st.markdown(
     <style>
     @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
 
-    /* Global Typography & Background */
-    html, body, [class*="css"], [class*="st-"] {
-        font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif !important;
+    /* Global Typography */
+    html, body, p, div, span, h1, h2, h3, h4, h5, h6, input, textarea, select {
+        font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+    /* Preserve Streamlit icon font so ligature icons render as graphical icons instead of raw text */
+    [data-testid="stIconMaterial"], .material-symbols-rounded, .material-symbols-outlined, .material-icons {
+        font-family: 'Material Symbols Rounded', 'Material Icons' !important;
+        font-weight: normal !important;
+        font-style: normal !important;
     }
 
     /* Hide Streamlit default chrome & branding */
@@ -201,18 +207,12 @@ st.markdown(
         box-shadow: none !important;
         transition: all 0.15s ease !important;
     }
-    /* Strip any pseudo-elements completely to prevent label cloning */
-    [data-testid="stFileUploader"] button::before,
-    [data-testid="stFileUploader"] button::after,
-    [data-testid="stFileUploader"] button *::before,
-    [data-testid="stFileUploader"] button *::after {
-        content: none !important;
-        display: none !important;
-    }
-    /* Ensure child span or text node inherits cleanly without duplication */
-    [data-testid="stFileUploader"] button > * {
-        display: inline !important;
-        line-height: inherit !important;
+    /* Ensure icon inside button displays cleanly alongside text */
+    [data-testid="stFileUploader"] button [data-testid="stIconMaterial"] {
+        font-family: 'Material Symbols Rounded', 'Material Icons' !important;
+        font-size: 18px !important;
+        margin-right: 0.35rem !important;
+        display: inline-block !important;
     }
     [data-testid="stFileUploader"] button:hover {
         background-color: #2b3245 !important;
