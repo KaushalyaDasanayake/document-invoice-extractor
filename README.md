@@ -1,3 +1,14 @@
+---
+title: Invoice Data Extractor Studio
+emoji: 🧾
+colorFrom: blue
+colorTo: indigo
+sdk: gradio
+sdk_version: 4.19.2
+app_file: app.py
+pinned: false
+---
+
 # Document Data Extractor (`docextract`)
 
 A production-style document invoice extractor that processes scanned PDFs and image files via OCR, extracts structured invoice fields, validates contracts with Pydantic v2, computes confidence scores and mathematical sanity checks, supports PII redaction, and provides CSV/JSON export endpoints.
