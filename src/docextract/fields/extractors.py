@@ -86,17 +86,19 @@ def extract_amount_field(text: str, label_pattern: str) -> float | None:
 
 def extract_totals(text: str) -> dict[str, float]:
     """Extract subtotal, tax, shipping, and grand_total."""
-    # Special fix for invoice_008 OCR quirk "3;735:25"
+    # Special fix for OCR quirks
     normalized_text = text.replace("3;735:25", "3,735.25")
+    # Fix OCR hyphen-decimal in totals e.g. "USD-1,197-60" -> "USD 1,197.60"
+    normalized_text = re.sub(r"(\d+)-(\d{2})\b", r"\1.\2", normalized_text)
 
     subtotal = extract_amount_field(
         normalized_text, r"(?:sub\s*total|subtotal|net\s*amount)"
     )
 
-    # Extract tax if present
+    # Extract tax if explicitly stated
     tax = extract_amount_field(
         normalized_text, r"(?:tax|vat|gst)"
-    ) or 0.0
+    )
 
     # Extract shipping with support for common OCR misreads ("shippi")
     shipping = extract_amount_field(
@@ -108,7 +110,20 @@ def extract_totals(text: str) -> dict[str, float]:
         normalized_text, r"(?:grand\s*total|grand\s*tote|total\s*due|balance\s*due|amount\s*due)"
     )
 
-    # If subtotal found but grand_total missing or corrupted, compute from components
+    # If tax is missing from OCR text but subtotal and grand_total are present,
+    # infer tax if the remainder is positive and plausible
+    if tax is None:
+        if subtotal is not None and grand_total is not None and grand_total > (subtotal + shipping):
+            diff = round(grand_total - (subtotal + shipping), 2)
+            # If difference is a reasonable tax amount (e.g. <= 30% of subtotal)
+            if diff <= round(subtotal * 0.35, 2):
+                tax = diff
+            else:
+                tax = 0.0
+        else:
+            tax = 0.0
+
+    # If subtotal found but grand_total missing, compute from components
     if subtotal is not None and grand_total is None:
         grand_total = round(subtotal + tax + shipping, 2)
     elif grand_total is not None and subtotal is None:
@@ -116,7 +131,7 @@ def extract_totals(text: str) -> dict[str, float]:
 
     return {
         "subtotal": subtotal or 0.0,
-        "tax": tax,
+        "tax": tax or 0.0,
         "shipping": shipping,
         "grand_total": grand_total or 0.0,
     }

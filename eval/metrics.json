@@ -1,12 +1,12 @@
 {
   "schema_version": "v1",
   "totals": {
-    "true_positive": 84,
-    "false_positive": 20,
-    "false_negative": 52
+    "true_positive": 88,
+    "false_positive": 16,
+    "false_negative": 48
   },
-  "precision": 0.8076923076923077,
-  "recall": 0.6176470588235294,
+  "precision": 0.8461538461538461,
+  "recall": 0.6470588235294118,
   "per_field": {
     "vendor_name": {
       "true_positive": 8,
@@ -59,9 +59,9 @@
       "false_negative": 0
     },
     "totals.tax": {
-      "true_positive": 3,
-      "false_positive": 5,
-      "false_negative": 5
+      "true_positive": 5,
+      "false_positive": 3,
+      "false_negative": 3
     },
     "totals.shipping": {
       "true_positive": 6,
@@ -69,9 +69,9 @@
       "false_negative": 2
     },
     "totals.grand_total": {
-      "true_positive": 2,
-      "false_positive": 6,
-      "false_negative": 6
+      "true_positive": 4,
+      "false_positive": 4,
+      "false_negative": 4
     },
     "payment.bank_name": {
       "true_positive": 0,
@@ -103,13 +103,13 @@
     },
     {
       "sample_id": "invoice_002",
-      "matched_fields": 11,
+      "matched_fields": 13,
       "total_fields": 17,
       "prediction_file": "eval/predictions/invoice_002.json"
     },
     {
       "sample_id": "invoice_003",
-      "matched_fields": 10,
+      "matched_fields": 12,
       "total_fields": 17,
       "prediction_file": "eval/predictions/invoice_003.json"
     },
