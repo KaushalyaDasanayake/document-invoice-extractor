@@ -180,12 +180,19 @@ st.markdown(
         background-color: #0b1120 !important;
         border: 1.5px dashed #2b3245 !important;
         border-radius: 12px !important;
-        padding: 1.5rem 1rem !important;
+        padding: 1.5rem 1.25rem !important;
         transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
     }
     [data-testid="stFileUploader"] section:hover {
         border-color: #3b82f6 !important;
         background-color: rgba(59, 130, 246, 0.03) !important;
+    }
+    [data-testid="stFileUploader"] section > input + div {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
     }
     [data-testid="stFileUploader"] button {
         background-color: #1e293b !important;
@@ -193,14 +200,31 @@ st.markdown(
         border: 1px solid #334155 !important;
         font-weight: 600 !important;
         border-radius: 8px !important;
-        font-size: 0.82rem !important;
-        padding: 0.4rem 0.9rem !important;
+        font-size: 0.84rem !important;
+        line-height: 1 !important;
+        padding: 0.55rem 1.15rem !important;
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        gap: 0.4rem !important;
+        margin: 0 !important;
+        white-space: nowrap !important;
         transition: all 0.15s ease !important;
+    }
+    [data-testid="stFileUploader"] button::before,
+    [data-testid="stFileUploader"] button::after {
+        content: none !important;
+        display: none !important;
     }
     [data-testid="stFileUploader"] button:hover {
         background-color: #2b3245 !important;
-        border-color: #475569 !important;
+        border-color: #3b82f6 !important;
         color: #ffffff !important;
+    }
+    [data-testid="stFileUploader"] small {
+        color: #64748b !important;
+        font-size: 0.76rem !important;
+        margin-top: 0.25rem !important;
     }
 
     /* Standardized Metric Cards */
