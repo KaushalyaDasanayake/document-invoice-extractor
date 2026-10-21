@@ -6,4 +6,5 @@ __pycache__/
 *.egg-info/
 .env
 MILESTONES.md
-?? data/
+data/
+eval/predictions/
