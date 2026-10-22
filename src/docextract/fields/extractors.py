@@ -12,10 +12,10 @@ CURRENCY_MAP = {
 
 
 def extract_invoice_number(text: str) -> str | None:
-    """Find and return invoice number identifier."""
-    # Look for explicit label like Invoice No: NWO-2026-0001
+    """Find and return invoice, receipt, order, or bill identifier."""
+    # Look for explicit label like Invoice No, Receipt #, Bill #, Order #
     explicit = re.search(
-        r"(?i)\b(?:invoice\s*no|invoice\s*number|invoice\s*#|inv\s*#|inv\s*no)[:.\s]*([A-Z0-9-]{3,})\b",
+        r"(?i)\b(?:invoice\s*no|invoice\s*number|invoice\s*#|inv\s*#|inv\s*no|receipt\s*#|receipt\s*no|bill\s*#|bill\s*no|order\s*#|order\s*no|check\s*#|ref\s*#)[:.\s]*([A-Z0-9-]{3,})\b",
         text,
     )
     if explicit:
@@ -25,10 +25,10 @@ def extract_invoice_number(text: str) -> str | None:
             val = "NWO-" + val[4:]
         return val
 
-    # Fallback to general invoice token, ignoring 'Page' / 'Date'
-    for match in re.finditer(r"(?i)\b(?:invoice|inv)[\s#.:-]*([A-Z0-9-]{3,})\b", text):
+    # Fallback to general invoice/receipt token, ignoring 'Page' / 'Date'
+    for match in re.finditer(r"(?i)\b(?:invoice|inv|receipt|bill|order)[\s#.:-]*([A-Z0-9-]{3,})\b", text):
         candidate = match.group(1).strip()
-        if candidate.lower() not in {"page", "date", "due"}:
+        if candidate.lower() not in {"page", "date", "due", "total", "item", "items"}:
             return candidate
 
     return None
@@ -63,10 +63,25 @@ def extract_date_field(text: str, label_pattern: str) -> str | None:
 
 
 def extract_invoice_date(text: str) -> str | None:
-    """Extract the invoice issue date."""
-    return extract_date_field(
-        text, r"(?:invoice\s*date|date\s*of\s*issue|issue\s*date|\bdate\b|dated)"
+    """Extract the invoice or receipt issue date."""
+    labeled = extract_date_field(
+        text, r"(?:invoice\s*date|date\s*of\s*issue|issue\s*date|\bdate\b|dated|trans\s*date)"
     )
+    if labeled:
+        return labeled
+
+    # Heuristic fallback: scan full text for any standalone date format
+    date_candidates = re.findall(
+        r"\b(\d{4}[-/.]\d{1,2}[-/.]\d{1,2}|\d{1,2}[-/.]\d{1,2}[-/.]\d{4}|\b(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)[a-z]*\s+\d{1,2},?\s+\d{4})\b",
+        text,
+        re.IGNORECASE,
+    )
+    for dc in date_candidates:
+        parsed = normalize_date(dc)
+        if parsed:
+            return parsed
+
+    return None
 
 def extract_due_date(text: str) -> str | None:
     """Extract the invoice payement due date."""
@@ -107,8 +122,25 @@ def extract_totals(text: str) -> dict[str, float]:
 
     # Check for grand total line
     grand_total = extract_amount_field(
-        normalized_text, r"(?:grand\s*total|grand\s*tote|total\s*due|balance\s*due|amount\s*due)"
+        normalized_text, r"(?:grand\s*total|grand\s*tote|total\s*due|balance\s*due|amount\s*due|\btotal\b)"
     )
+
+    # Heuristic fallback for unstructured thermal receipts:
+    # If grand_total is still missing, look for standalone bottom monetary numbers
+    if grand_total is None or grand_total == 0.0:
+        money_lines = []
+        for line in normalized_text.splitlines():
+            clean = line.strip()
+            # Match lines that consist purely of monetary amounts or labeled amounts
+            m = re.search(r"^\s*(?:TOTAL|AMOUNT)?\s*([$€£]|USD|EUR|GBP|CAD|AUD|JPY|ZAR)?\s*([\d,]+(?:\.\d{1,2})?)\s*$", clean, re.IGNORECASE)
+            if m:
+                val = normalize_amount(m.group(2))
+                if val and val > 0:
+                    money_lines.append(val)
+        if money_lines:
+            grand_total = money_lines[-1]  # The bottom-most standalone number is usually the total
+            if subtotal is None:
+                subtotal = grand_total - (tax or 0.0) - shipping
 
     # If tax is missing from OCR text but subtotal and grand_total are present,
     # infer tax if the remainder is positive and plausible
