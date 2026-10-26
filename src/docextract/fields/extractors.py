@@ -51,14 +51,31 @@ def extract_currency(text: str) -> str:
 
 def extract_date_field(text: str, label_pattern: str) -> str | None:
     """Extract a date with a specific label prefix"""
-    # look for label followed by date-like tokens
-    pattern =  rf"(?i){label_pattern}[\s#.:-]*([A-Za-z0-9/,\s-]{{6,20}})"
+    # 1. First check single-line prefix match (e.g. "Date: Mar 06 2012")
+    pattern = rf"(?im)^{label_pattern}[\s#.:-]*([^\r\n]+)"
     match = re.search(pattern, text)
     if match:
         raw_val = match.group(1).strip()
-        # take first line if OCR ran multiple lines together
+        parsed = normalize_date(raw_val)
+        if parsed:
+            return parsed
+        # If line contains trailing tokens, search first date-like token in it
+        sub_match = re.search(r"([A-Za-z0-9/.,\s-]{6,20})", raw_val)
+        if sub_match:
+            parsed = normalize_date(sub_match.group(1))
+            if parsed:
+                return parsed
+
+    # 2. General multi-token pattern
+    general_pattern = rf"(?i){label_pattern}[\s#.:-]*([A-Za-z0-9/,\s-]{{6,20}})"
+    match = re.search(general_pattern, text)
+    if match:
+        raw_val = match.group(1).strip()
         first_line = raw_val.split("\n")[0].strip()
-        return normalize_date(first_line)
+        parsed = normalize_date(first_line)
+        if parsed:
+            return parsed
+
     return None
 
 

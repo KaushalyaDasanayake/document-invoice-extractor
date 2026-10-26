@@ -11,23 +11,27 @@ import re
 from datetime import datetime
 
 _DATE_FORMATS: tuple[tuple[str, str], ...] = (
-    ("%Y-%m-%d", "%Y-%m-%d"),  # ISO: 2026-08-10
-    ("%d/%m/%Y", "%Y-%m-%d"),  # 25/12/2026
-    ("%m/%d/%Y", "%Y-%m-%d"),  # 12/25/2026
-    ("%d-%m-%Y", "%Y-%m-%d"),  # 25-12-2026
-    ("%Y/%m/%d", "%Y-%m-%d"),  # 2026/08/10
-    ("%d.%m.%Y", "%Y-%m-%d"),  # 25.12.2026
-    ("%Y.%m.%d", "%Y-%m-%d"),  # 2026.12.25
-    ("%d/%m/%y", "%Y-%m-%d"),  # 25/12/26
-    ("%m/%d/%y", "%Y-%m-%d"),  # 12/25/26
-    ("%d-%m-%y", "%Y-%m-%d"),  # 25-12-26
-    ("%d.%m.%y", "%Y-%m-%d"),  # 25.12.26
+    ("%Y-%m-%d", "%Y-%m-%d"),   # ISO: 2026-08-10
+    ("%d/%m/%Y", "%Y-%m-%d"),   # 25/12/2026
+    ("%m/%d/%Y", "%Y-%m-%d"),   # 12/25/2026
+    ("%d-%m-%Y", "%Y-%m-%d"),   # 25-12-2026
+    ("%Y/%m/%d", "%Y-%m-%d"),   # 2026/08/10
+    ("%d.%m.%Y", "%Y-%m-%d"),   # 25.12.2026
+    ("%Y.%m.%d", "%Y-%m-%d"),   # 2026.12.25
+    ("%d/%m/%y", "%Y-%m-%d"),   # 25/12/26
+    ("%m/%d/%y", "%Y-%m-%d"),   # 12/25/26
+    ("%d-%m-%y", "%Y-%m-%d"),   # 25-12-26
+    ("%d.%m.%y", "%Y-%m-%d"),   # 25.12.26
+    ("%b %d %Y", "%Y-%m-%d"),   # Mar 06 2012 / Mar 6 2012
     ("%b %d, %Y", "%Y-%m-%d"),  # Aug 10, 2026
+    ("%B %d %Y", "%Y-%m-%d"),   # March 06 2012
     ("%B %d, %Y", "%Y-%m-%d"),  # August 10, 2026
     ("%d %b %Y", "%Y-%m-%d"),   # 10 Aug 2026
     ("%d %B %Y", "%Y-%m-%d"),   # 10 August 2026
     ("%d-%b-%Y", "%Y-%m-%d"),   # 10-Aug-2026
     ("%d-%B-%Y", "%Y-%m-%d"),   # 10-August-2026
+    ("%b-%d-%Y", "%Y-%m-%d"),   # Mar-06-2012
+    ("%b.%d.%Y", "%Y-%m-%d"),   # Mar.06.2012
 )
 
 # amount normalizer 
@@ -40,7 +44,8 @@ def normalize_date(value: str) -> str | None:
     tries several common formats. if none match returns None.
     """
 
-    cleaned = value.strip() # strip the whitespace
+    cleaned = value.strip().rstrip(".,;")
+    cleaned = re.sub(r"\s+", " ", cleaned)
     for input_fmt, output_fmt in _DATE_FORMATS:
         try:
             parsed = datetime.strptime(cleaned, input_fmt) 
