@@ -567,6 +567,9 @@ if uploaded_file is not None:
 
             # 4 Standardized Metric Cards
             c1, c2, c3, c4 = st.columns(4)
+            display_inv_date = invoice.invoice_date or "Not Detected"
+            display_due_date = invoice.due_date or "Not Detected"
+
             with c1:
                 st.markdown(
                     f"""
@@ -582,7 +585,7 @@ if uploaded_file is not None:
                     f"""
                     <div class="metric-card">
                         <div class="metric-label">Issue Date</div>
-                        <div class="metric-value">{html.escape(invoice.invoice_date)}</div>
+                        <div class="metric-value">{html.escape(display_inv_date)}</div>
                     </div>
                     """,
                     unsafe_allow_html=True,
@@ -592,7 +595,7 @@ if uploaded_file is not None:
                     f"""
                     <div class="metric-card">
                         <div class="metric-label">Due Date</div>
-                        <div class="metric-value">{html.escape(invoice.due_date)}</div>
+                        <div class="metric-value">{html.escape(display_due_date)}</div>
                     </div>
                     """,
                     unsafe_allow_html=True,

@@ -41,8 +41,8 @@ class ExtractionResult(BaseModel):
     customer_name: str = Field(...)
     customer_address: str = Field(...)
     invoice_number: str = Field(..., min_length=1)
-    invoice_date: str = Field(...) 
-    due_date: str = Field(...)
+    invoice_date: str | None = Field(default=None)
+    due_date: str | None = Field(default=None)
     currency: str = Field(..., min_length=3, max_length=3) 
     line_items: list[LineItem] = Field(..., min_length=1)
     totals: Totals

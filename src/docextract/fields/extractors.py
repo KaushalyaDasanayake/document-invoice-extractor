@@ -72,7 +72,7 @@ def extract_invoice_date(text: str) -> str | None:
 
     # Heuristic fallback: scan full text for any standalone date format
     date_candidates = re.findall(
-        r"\b(\d{4}[-/.]\d{1,2}[-/.]\d{1,2}|\d{1,2}[-/.]\d{1,2}[-/.]\d{4}|\b(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)[a-z]*\s+\d{1,2},?\s+\d{4})\b",
+        r"\b(\d{4}[-/.]\d{1,2}[-/.]\d{1,2}|\d{1,2}[-/.]\d{1,2}[-/.]\d{2,4}|\b\d{1,2}[-\s](?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)[a-z]*[-\s]\d{2,4}|\b(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)[a-z]*\s+\d{1,2},?\s+\d{2,4})\b",
         text,
         re.IGNORECASE,
     )
@@ -261,7 +261,7 @@ def extract_invoice(text: str) -> dict:
     """run full regex extraction pipeline and return dict ready for ExtractionResult."""
     parties = extract_parties(text)
     totals = extract_totals(text)
-    inv_date = extract_invoice_date(text) or "1970-01-01"
+    inv_date = extract_invoice_date(text)
     due_date = extract_due_date(text) or inv_date
 
     return {

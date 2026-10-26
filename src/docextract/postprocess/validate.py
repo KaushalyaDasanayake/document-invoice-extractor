@@ -17,11 +17,11 @@ def calculate_field_confidences(invoice_data: dict[str, Any]) -> dict[str, float
         confidences["invoice_number"] = 0.2
 
     # Dates
-    inv_date = invoice_data.get("invoice_date", "")
-    confidences["invoice_date"] = 0.95 if inv_date and inv_date != "1970-01-01" else 0.2
+    inv_date = invoice_data.get("invoice_date")
+    confidences["invoice_date"] = 0.95 if inv_date and inv_date != "1970-01-01" else 0.1
 
-    due_date = invoice_data.get("due_date", "")
-    confidences["due_date"] = 0.90 if due_date and due_date != "1970-01-01" else 0.2
+    due_date = invoice_data.get("due_date")
+    confidences["due_date"] = 0.90 if due_date and due_date != "1970-01-01" else 0.1
 
     # Parties
     v_name = invoice_data.get("vendor_name", "")
