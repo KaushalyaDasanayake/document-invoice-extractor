@@ -186,36 +186,91 @@ def extract_totals(text: str) -> dict[str, float]:
     }
 
 
+def _clean_party_line(line: str) -> str:
+    """Strip metadata tags, shipping markers, and balance columns merged by OCR."""
+    cleaned = re.sub(
+        r"(?i)\b(?:ship\s*mode|balance\s*due|due\s*date|order\s*id)[:\s]*[\$€£]?[\d.,\w-]*.*",
+        "",
+        line,
+    )
+    cleaned = re.sub(
+        r"(?i)\b(?:first\s*class|standard\s*class|second\s*class|ip\s*vloge|irst\s*class)\b.*",
+        "",
+        cleaned,
+    )
+    cleaned = re.sub(r"\s*\|\s*", " ", cleaned)
+    return cleaned.strip().rstrip(",")
+
+
 def extract_parties(text: str) -> dict[str, str]:
     """Extract vendor and customer name/address blocks."""
     lines = [line.strip() for line in text.splitlines() if line.strip()]
 
-    # Filter out banner lines like "INVOICE Page 1/1"
+    # Candidate vendor lines: ignore invoice tags, page numbers, invoice hashes, dates
     candidates = []
     for line in lines:
         cleaned = re.sub(r"(?i)\binvoice\b.*", "", line).strip()
         cleaned = re.sub(r"(?i)\bpage\s*\d+.*", "", cleaned).strip()
+        cleaned = re.sub(r"^[#№]\s*\w+", "", cleaned).strip()
+        cleaned = re.sub(r"(?i)^date:.*", "", cleaned).strip()
         if cleaned and len(cleaned) > 2:
             candidates.append(cleaned)
 
     vendor_name = candidates[0] if candidates else "Unknown Vendor"
-    vendor_address = candidates[1] if len(candidates) > 1 else ""
+    vendor_address = ""
+    if len(candidates) > 1:
+        c1 = candidates[1]
+        # Ignore if c1 looks like an invoice ID (# 12345), or section header
+        if not re.match(r"^[#№\d\s-]+$", c1) and not any(
+            k in c1.lower() for k in ["bill to", "ship to", "order id", "date:"]
+        ):
+            vendor_address = c1
 
     customer_name = "Unknown Customer"
     customer_address = ""
 
     # Look for bill to / invoice to block
-    bill_to_match = re.search(
-        r"(?i)(?:bill\s*to|invoice\s*to|sold\s*to)[:\s]*\n?([^\n]+)(?:\n([^\n]+))?",
-        text,
-    )
-    if bill_to_match:
-        customer_name = bill_to_match.group(1).strip()
-        if bill_to_match.group(2):
-            raw_addr = bill_to_match.group(2).strip()
-            # Do not capture total/description headers as customer address
-            if not any(k in raw_addr.lower() for k in ["description", "subtotal", "total", "qty"]):
-                customer_address = raw_addr
+    bill_idx = -1
+    for idx, raw_line in enumerate(lines):
+        if re.search(r"(?i)\b(?:bill\s*to|invoice\s*to|sold\s*to)\b", raw_line):
+            bill_idx = idx
+            break
+
+    if bill_idx != -1:
+        same_line = lines[bill_idx]
+        after_bill = re.sub(r"(?i).*?\b(?:bill\s*to|invoice\s*to|sold\s*to)[:\s]*", "", same_line).strip()
+        after_bill = re.sub(r"(?i)\bship\s*(?:to|mode)[:\s]*.*", "", after_bill).strip()
+
+        collected = []
+        if after_bill and len(after_bill) > 2:
+            cl = _clean_party_line(after_bill)
+            if cl and len(cl) > 2:
+                collected.append(cl)
+
+        for raw_line in lines[bill_idx + 1:]:
+            # Stop if table headers or totals reached
+            if any(k in raw_line.lower() for k in ["quantity", "amount", "subtotal", "total:", "description", "terms:", "notes:"]):
+                break
+            # Skip pure shipping/meta headers
+            if re.match(r"(?i)^(?:ship\s*(?:to|mode)|delivery|payment\s*method)[:\s]*.*", raw_line):
+                continue
+            cl = _clean_party_line(raw_line)
+            if cl and len(cl) > 2 and bool(re.search(r"[A-Za-z0-9]{2,}", cl)):
+                collected.append(cl)
+
+        if collected:
+            first = collected[0]
+            # Check if name has address appended across columns (e.g. "Aaron Bergman 98103, Seattle, ...")
+            addr_split = re.search(r"^(.*?)\s+(\d{5}\b.*)$", first)
+            if addr_split:
+                customer_name = addr_split.group(1).strip()
+                addr_first = addr_split.group(2).strip()
+                collected[0] = addr_first
+                customer_address = ", ".join(collected)
+            else:
+                customer_name = first
+                if len(collected) > 1:
+                    customer_address = ", ".join(collected[1:])
 
     return {
         "vendor_name": vendor_name,
