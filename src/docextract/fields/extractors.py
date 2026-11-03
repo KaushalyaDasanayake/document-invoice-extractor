@@ -334,7 +334,7 @@ def extract_invoice(text: str) -> dict:
     parties = extract_parties(text)
     totals = extract_totals(text)
     inv_date = extract_invoice_date(text)
-    due_date = extract_due_date(text) or inv_date
+    due_date = extract_due_date(text)
 
     return {
         "vendor_name": parties["vendor_name"],
